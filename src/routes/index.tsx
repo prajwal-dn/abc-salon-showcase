@@ -228,6 +228,7 @@ function Index() {
             href={WA}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={(e) => openWhatsApp(e, WA)}
             className="rounded-full bg-[var(--gradient-gold)] px-5 py-2 text-sm font-medium text-primary-foreground shadow-[var(--shadow-glow)] transition hover:scale-105"
           >
             Book
