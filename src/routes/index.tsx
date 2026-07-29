@@ -6,6 +6,7 @@ import {
   Wand2, Crown, Phone, MapPin, Clock, Star, ArrowRight, X, Check,
 } from "lucide-react";
 import heroImg from "@/assets/salon-hero.jpg";
+import bridalSuiteImg from "@/assets/bridal-suite.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
