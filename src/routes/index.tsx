@@ -221,10 +221,10 @@ function Index() {
         transition={{ duration: 0.7 }}
         className="fixed top-4 left-1/2 z-50 -translate-x-1/2 w-[min(1100px,92vw)]"
       >
-        <nav className="glass-strong flex items-center justify-between rounded-full px-6 py-3">
-          <a href="#" className="flex items-center gap-2">
-            <span className="grid h-8 w-8 place-items-center rounded-full bg-[var(--gradient-gold)] text-primary-foreground font-display text-lg font-semibold">A</span>
-            <span className="font-display text-xl tracking-wide">ABC <span className="text-gradient-gold">Saloun</span></span>
+        <nav className="glass-strong flex items-center justify-between rounded-full px-3 py-2 sm:px-6 sm:py-3 gap-2">
+          <a href="#" className="flex items-center gap-2 min-w-0">
+            <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[var(--gradient-gold)] text-primary-foreground font-display text-lg font-semibold">A</span>
+            <span className="font-display text-base sm:text-xl tracking-wide truncate">ABC <span className="text-gradient-gold">Saloun</span></span>
           </a>
           <div className="hidden gap-8 text-sm text-muted-foreground md:flex">
             <a href="#facilities" className="hover:text-foreground transition">Facilities</a>
@@ -236,14 +236,14 @@ function Index() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => openWhatsApp(e, WA)}
-            className="rounded-full bg-[var(--gradient-gold)] px-5 py-2 text-sm font-medium text-primary-foreground shadow-[var(--shadow-glow)] transition hover:scale-105"
+            className="shrink-0 rounded-full bg-[var(--gradient-gold)] px-4 py-2 text-xs sm:text-sm sm:px-5 font-medium text-primary-foreground shadow-[var(--shadow-glow)] transition hover:scale-105"
           >
             Book
           </a>
         </nav>
       </motion.header>
 
-      <section className="relative flex min-h-screen items-center justify-center px-6 pt-32">
+      <section className="relative flex min-h-screen items-center justify-center px-6 pt-28 sm:pt-32">
         <motion.div style={{ y: heroY, opacity: heroOpacity }} className="absolute inset-0 -z-10">
           <img src={heroImg} alt="ABC Saloun interior" className="h-full w-full object-cover opacity-40" />
           <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background" />
