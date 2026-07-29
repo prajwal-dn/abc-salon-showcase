@@ -432,7 +432,7 @@ function Index() {
         >
           <div className="absolute inset-0 -z-10 bg-[var(--gradient-radial)]" />
           <p className="mb-3 text-xs uppercase tracking-[0.3em] text-primary">Visit us</p>
-          <h2 className="text-4xl sm:text-6xl">Step into <span className="italic text-gradient-gold">ABC Saloun</span></h2>
+          <h2 className="text-3xl sm:text-6xl">Step into <span className="italic text-gradient-gold">ABC Saloun</span></h2>
           <p className="mx-auto mt-5 max-w-md text-muted-foreground">Walk-ins welcome — appointments preferred for the full ritual.</p>
 
           <div className="mt-10 grid gap-4 sm:grid-cols-3">
