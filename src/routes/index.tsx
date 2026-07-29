@@ -118,7 +118,6 @@ const facilities: Facility[] = [
       makeup2,
       makeup3,
     ],
-    ],
     services: [
       { name: "Party Makeup", price: "₹3,000" },
       { name: "HD Makeup", price: "₹5,500" },
