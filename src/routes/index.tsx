@@ -193,6 +193,13 @@ function Index() {
     return () => { document.body.style.overflow = ""; };
   }, [active]);
 
+  useEffect(() => {
+    if (!active) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setActive(null); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [active]);
+
   return (
     <div ref={ref} className="min-h-screen overflow-x-hidden">
       <div className="pointer-events-none fixed inset-0 -z-10">
