@@ -3,13 +3,16 @@ import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import {
   Scissors, Sparkles, Heart, Flower2, Hand, Palette,
-  Wand2, Crown, Phone, MapPin, Clock, Star, ArrowRight, ArrowLeft, X, Check,
+  Wand2, Crown, Phone, MapPin, Clock, Star, ArrowRight, ArrowLeft, X, Check, Home
 } from "lucide-react";
 import heroImg from "@/assets/salon-hero.jpg";
 import bridalSuiteImg from "@/assets/bridal-suite.jpg";
 import makeup1 from "@/assets/makeup-1.jpg";
 import makeup2 from "@/assets/makeup-2.jpg";
 import makeup3 from "@/assets/makeup-3.jpg";
+import hairSpa1 from "@/assets/hair-spa-1.png";
+import hairSpa2 from "@/assets/hair-spa-2.png";
+import hairSpa3 from "@/assets/hair-spa-3.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -133,9 +136,9 @@ const facilities: Facility[] = [
     desc: "Scalp diagnostics, keratin therapy and restorative protein rituals.",
     long: "Digital scalp diagnostics guide bespoke rituals — deep-conditioning masks, scalp massages and protein therapy that repair from the inside.",
     images: [
-      "https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=1200&q=80",
-      "https://images.unsplash.com/photo-1560869713-7d0954430f60?w=1200&q=80",
-      "https://images.unsplash.com/photo-1519415943484-9fa1873496d4?w=1200&q=80",
+      hairSpa1,
+      hairSpa2,
+      hairSpa3,
     ],
     services: [
       { name: "Signature Hair Spa", price: "₹1,500" },
@@ -164,22 +167,8 @@ const facilities: Facility[] = [
 
 const WA_NUMBER = "919035891110";
 const waLink = (msg: string) =>
-  `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+  `https://api.whatsapp.com/send?phone=${WA_NUMBER}&text=${encodeURIComponent(msg)}`;
 const WA = waLink("Hi ABC Saloun! I'd like to book an appointment.");
-
-const openWhatsApp = (e: React.MouseEvent<HTMLAnchorElement>, url: string) => {
-  e.preventDefault();
-  // Try opening in a new tab; if the popup is blocked (e.g. inside the
-  // Lovable preview iframe), fall back to navigating the top-level window.
-  const win = window.open(url, "_blank", "noopener,noreferrer");
-  if (!win || win.closed || typeof win.closed === "undefined") {
-    try {
-      window.top!.location.href = url;
-    } catch {
-      window.location.href = url;
-    }
-  }
-};
 
 function Index() {
   const ref = useRef<HTMLDivElement>(null);
@@ -235,7 +224,6 @@ function Index() {
             href={WA}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={(e) => openWhatsApp(e, WA)}
             className="shrink-0 rounded-full bg-[var(--gradient-gold)] px-4 py-2 text-xs sm:text-sm sm:px-5 font-medium text-primary-foreground shadow-[var(--shadow-glow)] transition hover:scale-105"
           >
             Book
@@ -453,7 +441,6 @@ function Index() {
             href={WA}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={(e) => openWhatsApp(e, WA)}
             className="mt-10 inline-flex items-center gap-2 rounded-full bg-[var(--gradient-gold)] px-8 py-4 text-sm font-medium text-primary-foreground shadow-[var(--shadow-glow)] transition hover:scale-105"
           >
             <Phone className="h-4 w-4" /> Book your appointment
@@ -476,6 +463,17 @@ function Index() {
             onClick={() => setActive(null)}
             className="fixed inset-0 z-[100] flex items-start sm:items-center justify-center overflow-y-auto bg-background/70 backdrop-blur-xl p-0 sm:p-8"
           >
+            {/* Floating Back to Home Button - Always Visible */}
+            <div className="fixed top-4 left-4 z-[120] sm:top-6 sm:left-6">
+              <button
+                onClick={() => setActive(null)}
+                className="flex items-center gap-2.5 rounded-full bg-background/90 backdrop-blur-xl border border-white/20 px-5 py-3 text-sm font-medium shadow-[0_8px_32px_rgba(0,0,0,0.5)] transition hover:bg-white/10 hover:scale-105"
+                aria-label="Back to home"
+              >
+                <Home className="h-4 w-4 text-primary" /> Back to Home
+              </button>
+            </div>
+
             <motion.div
               initial={{ opacity: 0, y: 40, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -484,28 +482,16 @@ function Index() {
               onClick={(e) => e.stopPropagation()}
               className="glass-strong relative my-0 sm:my-8 min-h-screen sm:min-h-0 w-full max-w-5xl overflow-hidden rounded-none sm:rounded-[2rem]"
             >
-              {/* Sticky top bar with clear Back button */}
-              <div className="sticky top-0 z-20 flex items-center justify-between gap-3 px-4 py-3 sm:px-6 bg-background/70 backdrop-blur-xl border-b border-white/5">
-                <button
-                  onClick={() => setActive(null)}
-                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-background/60 backdrop-blur px-4 py-2 text-xs sm:text-sm font-medium hover:bg-background/90 transition"
-                  aria-label="Back to home"
-                >
-                  <ArrowLeft className="h-4 w-4" /> Back
-                </button>
-                <span className="hidden sm:block text-xs uppercase tracking-[0.25em] text-muted-foreground truncate">
-                  {active.title}
-                </span>
-                <button
-                  onClick={() => setActive(null)}
-                  className="grid h-9 w-9 place-items-center rounded-full bg-background/60 backdrop-blur border border-white/10 hover:bg-background/90 transition"
-                  aria-label="Close"
-                >
-                  <X className="h-4 w-4" />
-                </button>
-              </div>
+              {/* Close Button Top Right */}
+              <button
+                onClick={() => setActive(null)}
+                className="absolute top-4 right-4 z-20 grid h-10 w-10 place-items-center rounded-full bg-background/60 backdrop-blur-md border border-white/10 shadow-lg transition hover:bg-background/90 hover:scale-110 sm:top-6 sm:right-6"
+                aria-label="Close"
+              >
+                <X className="h-5 w-5" />
+              </button>
 
-              <div className="relative h-56 sm:h-80 w-full overflow-hidden">
+              <div className="relative h-64 sm:h-80 w-full overflow-hidden">
                 <motion.img
                   key={active.title}
                   src={active.images[0]}
@@ -577,9 +563,6 @@ function Index() {
                     href={waLink(`Hi ABC Saloun! I'd like to book ${active.title}.`)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    onClick={(e) =>
-                      openWhatsApp(e, waLink(`Hi ABC Saloun! I'd like to book ${active.title}.`))
-                    }
                     className="inline-flex items-center gap-2 rounded-full bg-[var(--gradient-gold)] px-6 py-3 text-sm font-medium text-primary-foreground shadow-[var(--shadow-glow)] transition hover:scale-105"
                   >
                     <Phone className="h-4 w-4" /> Book {active.title}
