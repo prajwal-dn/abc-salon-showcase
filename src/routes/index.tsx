@@ -446,6 +446,7 @@ function Index() {
             href={WA}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={(e) => openWhatsApp(e, WA)}
             className="mt-10 inline-flex items-center gap-2 rounded-full bg-[var(--gradient-gold)] px-8 py-4 text-sm font-medium text-primary-foreground shadow-[var(--shadow-glow)] transition hover:scale-105"
           >
             <Phone className="h-4 w-4" /> Book your appointment
