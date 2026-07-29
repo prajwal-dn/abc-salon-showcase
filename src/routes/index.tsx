@@ -162,7 +162,24 @@ const facilities: Facility[] = [
   },
 ];
 
-const WA = "https://wa.me/919035891110?text=Hi%20ABC%20Saloun!%20I'd%20like%20to%20book%20an%20appointment.";
+const WA_NUMBER = "919035891110";
+const waLink = (msg: string) =>
+  `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+const WA = waLink("Hi ABC Saloun! I'd like to book an appointment.");
+
+const openWhatsApp = (e: React.MouseEvent<HTMLAnchorElement>, url: string) => {
+  e.preventDefault();
+  // Try opening in a new tab; if the popup is blocked (e.g. inside the
+  // Lovable preview iframe), fall back to navigating the top-level window.
+  const win = window.open(url, "_blank", "noopener,noreferrer");
+  if (!win || win.closed || typeof win.closed === "undefined") {
+    try {
+      window.top!.location.href = url;
+    } catch {
+      window.location.href = url;
+    }
+  }
+};
 
 function Index() {
   const ref = useRef<HTMLDivElement>(null);
@@ -211,6 +228,7 @@ function Index() {
             href={WA}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={(e) => openWhatsApp(e, WA)}
             className="rounded-full bg-[var(--gradient-gold)] px-5 py-2 text-sm font-medium text-primary-foreground shadow-[var(--shadow-glow)] transition hover:scale-105"
           >
             Book
@@ -428,6 +446,7 @@ function Index() {
             href={WA}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={(e) => openWhatsApp(e, WA)}
             className="mt-10 inline-flex items-center gap-2 rounded-full bg-[var(--gradient-gold)] px-8 py-4 text-sm font-medium text-primary-foreground shadow-[var(--shadow-glow)] transition hover:scale-105"
           >
             <Phone className="h-4 w-4" /> Book your appointment
@@ -535,9 +554,12 @@ function Index() {
                 <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-white/5 pt-6">
                   <p className="text-xs text-muted-foreground">Prices indicative — final quote given after consultation.</p>
                   <a
-                    href={`https://wa.me/919035891110?text=${encodeURIComponent(`Hi ABC Saloun! I'd like to book ${active.title}.`)}`}
+                    href={waLink(`Hi ABC Saloun! I'd like to book ${active.title}.`)}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={(e) =>
+                      openWhatsApp(e, waLink(`Hi ABC Saloun! I'd like to book ${active.title}.`))
+                    }
                     className="inline-flex items-center gap-2 rounded-full bg-[var(--gradient-gold)] px-6 py-3 text-sm font-medium text-primary-foreground shadow-[var(--shadow-glow)] transition hover:scale-105"
                   >
                     <Phone className="h-4 w-4" /> Book {active.title}
