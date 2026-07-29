@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import {
   Scissors, Sparkles, Heart, Flower2, Hand, Palette,
-  Wand2, Crown, Phone, MapPin, Clock, Star, ArrowRight, X, Check,
+  Wand2, Crown, Phone, MapPin, Clock, Star, ArrowRight, ArrowLeft, X, Check,
 } from "lucide-react";
 import heroImg from "@/assets/salon-hero.jpg";
 import bridalSuiteImg from "@/assets/bridal-suite.jpg";
