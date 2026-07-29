@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import {
   Scissors, Sparkles, Heart, Flower2, Hand, Palette,
-  Wand2, Crown, Phone, MapPin, Clock, Star, ArrowRight, X, Check,
+  Wand2, Crown, Phone, MapPin, Clock, Star, ArrowRight, ArrowLeft, X, Check,
 } from "lucide-react";
 import heroImg from "@/assets/salon-hero.jpg";
 import bridalSuiteImg from "@/assets/bridal-suite.jpg";
@@ -193,6 +193,13 @@ function Index() {
     return () => { document.body.style.overflow = ""; };
   }, [active]);
 
+  useEffect(() => {
+    if (!active) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setActive(null); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [active]);
+
   return (
     <div ref={ref} className="min-h-screen overflow-x-hidden">
       <div className="pointer-events-none fixed inset-0 -z-10">
@@ -214,10 +221,10 @@ function Index() {
         transition={{ duration: 0.7 }}
         className="fixed top-4 left-1/2 z-50 -translate-x-1/2 w-[min(1100px,92vw)]"
       >
-        <nav className="glass-strong flex items-center justify-between rounded-full px-6 py-3">
-          <a href="#" className="flex items-center gap-2">
-            <span className="grid h-8 w-8 place-items-center rounded-full bg-[var(--gradient-gold)] text-primary-foreground font-display text-lg font-semibold">A</span>
-            <span className="font-display text-xl tracking-wide">ABC <span className="text-gradient-gold">Saloun</span></span>
+        <nav className="glass-strong flex items-center justify-between rounded-full px-3 py-2 sm:px-6 sm:py-3 gap-2">
+          <a href="#" className="flex items-center gap-2 min-w-0">
+            <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[var(--gradient-gold)] text-primary-foreground font-display text-lg font-semibold">A</span>
+            <span className="font-display text-base sm:text-xl tracking-wide truncate">ABC <span className="text-gradient-gold">Saloun</span></span>
           </a>
           <div className="hidden gap-8 text-sm text-muted-foreground md:flex">
             <a href="#facilities" className="hover:text-foreground transition">Facilities</a>
@@ -229,14 +236,14 @@ function Index() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => openWhatsApp(e, WA)}
-            className="rounded-full bg-[var(--gradient-gold)] px-5 py-2 text-sm font-medium text-primary-foreground shadow-[var(--shadow-glow)] transition hover:scale-105"
+            className="shrink-0 rounded-full bg-[var(--gradient-gold)] px-4 py-2 text-xs sm:text-sm sm:px-5 font-medium text-primary-foreground shadow-[var(--shadow-glow)] transition hover:scale-105"
           >
             Book
           </a>
         </nav>
       </motion.header>
 
-      <section className="relative flex min-h-screen items-center justify-center px-6 pt-32">
+      <section className="relative flex min-h-screen items-center justify-center px-6 pt-28 sm:pt-32">
         <motion.div style={{ y: heroY, opacity: heroOpacity }} className="absolute inset-0 -z-10">
           <img src={heroImg} alt="ABC Saloun interior" className="h-full w-full object-cover opacity-40" />
           <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background" />
@@ -257,7 +264,7 @@ function Index() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.1 }}
-            className="text-5xl leading-[1.05] sm:text-7xl md:text-8xl"
+            className="text-4xl leading-[1.05] sm:text-7xl md:text-8xl"
           >
             Where beauty becomes
             <br />
@@ -315,7 +322,7 @@ function Index() {
             className="mb-16 text-center"
           >
             <p className="mb-3 text-xs uppercase tracking-[0.3em] text-primary">Our facilities</p>
-            <h2 className="text-4xl sm:text-6xl">Eight worlds, <span className="italic text-gradient-gold">one studio</span>.</h2>
+            <h2 className="text-3xl sm:text-6xl">Eight worlds, <span className="italic text-gradient-gold">one studio</span>.</h2>
             <p className="mx-auto mt-5 max-w-xl text-muted-foreground">Tap any facility to step inside and see the space, rituals & pricing.</p>
           </motion.div>
 
@@ -425,7 +432,7 @@ function Index() {
         >
           <div className="absolute inset-0 -z-10 bg-[var(--gradient-radial)]" />
           <p className="mb-3 text-xs uppercase tracking-[0.3em] text-primary">Visit us</p>
-          <h2 className="text-4xl sm:text-6xl">Step into <span className="italic text-gradient-gold">ABC Saloun</span></h2>
+          <h2 className="text-3xl sm:text-6xl">Step into <span className="italic text-gradient-gold">ABC Saloun</span></h2>
           <p className="mx-auto mt-5 max-w-md text-muted-foreground">Walk-ins welcome — appointments preferred for the full ritual.</p>
 
           <div className="mt-10 grid gap-4 sm:grid-cols-3">
@@ -467,7 +474,7 @@ function Index() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
             onClick={() => setActive(null)}
-            className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto bg-background/70 backdrop-blur-xl p-4 sm:p-8"
+            className="fixed inset-0 z-[100] flex items-start sm:items-center justify-center overflow-y-auto bg-background/70 backdrop-blur-xl p-0 sm:p-8"
           >
             <motion.div
               initial={{ opacity: 0, y: 40, scale: 0.96 }}
@@ -475,17 +482,30 @@ function Index() {
               exit={{ opacity: 0, y: 30, scale: 0.97 }}
               transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
               onClick={(e) => e.stopPropagation()}
-              className="glass-strong relative my-8 w-full max-w-5xl overflow-hidden rounded-[2rem]"
+              className="glass-strong relative my-0 sm:my-8 min-h-screen sm:min-h-0 w-full max-w-5xl overflow-hidden rounded-none sm:rounded-[2rem]"
             >
-              <button
-                onClick={() => setActive(null)}
-                className="absolute right-4 top-4 z-10 grid h-10 w-10 place-items-center rounded-full bg-background/60 backdrop-blur border border-white/10 hover:bg-background/80 transition"
-                aria-label="Close"
-              >
-                <X className="h-4 w-4" />
-              </button>
+              {/* Sticky top bar with clear Back button */}
+              <div className="sticky top-0 z-20 flex items-center justify-between gap-3 px-4 py-3 sm:px-6 bg-background/70 backdrop-blur-xl border-b border-white/5">
+                <button
+                  onClick={() => setActive(null)}
+                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-background/60 backdrop-blur px-4 py-2 text-xs sm:text-sm font-medium hover:bg-background/90 transition"
+                  aria-label="Back to home"
+                >
+                  <ArrowLeft className="h-4 w-4" /> Back
+                </button>
+                <span className="hidden sm:block text-xs uppercase tracking-[0.25em] text-muted-foreground truncate">
+                  {active.title}
+                </span>
+                <button
+                  onClick={() => setActive(null)}
+                  className="grid h-9 w-9 place-items-center rounded-full bg-background/60 backdrop-blur border border-white/10 hover:bg-background/90 transition"
+                  aria-label="Close"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
 
-              <div className="relative h-64 sm:h-80 w-full overflow-hidden">
+              <div className="relative h-56 sm:h-80 w-full overflow-hidden">
                 <motion.img
                   key={active.title}
                   src={active.images[0]}
@@ -496,25 +516,25 @@ function Index() {
                   className="h-full w-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between gap-4">
-                  <div>
-                    <div className="mb-3 inline-grid h-12 w-12 place-items-center rounded-2xl bg-[var(--gradient-gold)] text-primary-foreground shadow-[var(--shadow-glow)]">
+                <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 flex items-end justify-between gap-4">
+                  <div className="min-w-0">
+                    <div className="mb-3 inline-grid h-10 w-10 sm:h-12 sm:w-12 place-items-center rounded-2xl bg-[var(--gradient-gold)] text-primary-foreground shadow-[var(--shadow-glow)]">
                       <active.icon className="h-5 w-5" />
                     </div>
-                    <h3 className="font-display text-4xl sm:text-5xl">{active.title}</h3>
+                    <h3 className="font-display text-3xl sm:text-5xl leading-tight">{active.title}</h3>
                   </div>
                   {active.tag && (
-                    <span className="rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-[10px] uppercase tracking-wider text-primary">
+                    <span className="shrink-0 rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-[10px] uppercase tracking-wider text-primary">
                       {active.tag}
                     </span>
                   )}
                 </div>
               </div>
 
-              <div className="p-6 sm:p-10 pt-6">
-                <p className="max-w-2xl text-muted-foreground">{active.long}</p>
+              <div className="p-5 sm:p-10 pt-6">
+                <p className="max-w-2xl text-sm sm:text-base text-muted-foreground">{active.long}</p>
 
-                <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-2">
+                <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
                   {active.images.slice(1).map((src, i) => (
                     <motion.div
                       key={src}
@@ -523,7 +543,7 @@ function Index() {
                       transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
                       className="glass overflow-hidden rounded-2xl"
                     >
-                      <img src={src} alt={`${active.title} ${i + 2}`} className="h-48 w-full object-cover hover:scale-105 transition-transform duration-700" />
+                      <img src={src} alt={`${active.title} ${i + 2}`} className="h-40 sm:h-48 w-full object-cover hover:scale-105 transition-transform duration-700" />
                     </motion.div>
                   ))}
                 </div>
