@@ -114,9 +114,10 @@ const facilities: Facility[] = [
     desc: "Editorial, party and HD bridal makeup using world-class brands.",
     long: "Airbrush, HD and editorial finishes crafted with Charlotte Tilbury, MAC and Huda — for red carpets, receptions or your favourite Saturday night.",
     images: [
-      "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1200&q=80",
-      "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1200&q=80",
-      "https://images.unsplash.com/photo-1512207736890-6ffed8a84e8d?w=1200&q=80",
+      makeup1,
+      makeup2,
+      makeup3,
+    ],
     ],
     services: [
       { name: "Party Makeup", price: "₹3,000" },
