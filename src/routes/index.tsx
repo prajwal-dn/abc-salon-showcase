@@ -264,7 +264,7 @@ function Index() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.1 }}
-            className="text-5xl leading-[1.05] sm:text-7xl md:text-8xl"
+            className="text-4xl leading-[1.05] sm:text-7xl md:text-8xl"
           >
             Where beauty becomes
             <br />
