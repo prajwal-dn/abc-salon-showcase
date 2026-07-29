@@ -65,9 +65,9 @@ const facilities: Facility[] = [
     desc: "Pre-wedding glow plans, trials & on-the-day artistry in a private suite.",
     long: "A private suite dedicated to your bridal journey — from 90-day glow plans to airbrushed on-the-day artistry with your personal team of experts.",
     images: [
-      "https://images.unsplash.com/photo-1595777216528-071e0127ccbf?w=1200&q=80",
+      "https://images.unsplash.com/photo-1594736797933-d0301ba2fe65?w=1200&q=80",
       "https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600948836101-f9ffda59d250?w=1200&q=80",
+      "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1200&q=80",
     ],
     services: [
       { name: "Bridal Trial", price: "₹8,000" },
