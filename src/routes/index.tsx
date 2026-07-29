@@ -7,6 +7,9 @@ import {
 } from "lucide-react";
 import heroImg from "@/assets/salon-hero.jpg";
 import bridalSuiteImg from "@/assets/bridal-suite.jpg";
+import makeup1 from "@/assets/makeup-1.jpg";
+import makeup2 from "@/assets/makeup-2.jpg";
+import makeup3 from "@/assets/makeup-3.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
