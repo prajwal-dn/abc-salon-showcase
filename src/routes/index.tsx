@@ -66,7 +66,7 @@ function Index() {
             <a href="#visit" className="hover:text-foreground transition">Visit</a>
           </div>
           <a
-            href="https://wa.me/919876543210?text=Hi%20ABC%20Saloun!%20I'd%20like%20to%20book%20an%20appointment."
+            href="https://wa.me/919035891110?text=Hi%20ABC%20Saloun!%20I'd%20like%20to%20book%20an%20appointment."
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-full bg-[var(--gradient-gold)] px-5 py-2 text-sm font-medium text-primary-foreground shadow-[var(--shadow-glow)] transition hover:scale-105"
@@ -260,9 +260,9 @@ function Index() {
 
           <div className="mt-10 grid gap-4 sm:grid-cols-3">
             {[
-              { icon: MapPin, label: "Address", value: "42 Boulevard Lane, City Center" },
+              { icon: MapPin, label: "Address", value: "Avalahalli, Doddaballapura Main Rd, behind sai baba temple, Avalahalli, Karnataka 560119" },
               { icon: Clock, label: "Hours", value: "Mon–Sun · 10AM – 9PM" },
-              { icon: Phone, label: "Reserve", value: "+91 98765 43210" },
+              { icon: Phone, label: "Reserve", value: "+91 9035891110" },
             ].map((i) => (
               <div key={i.label} className="glass rounded-2xl p-5 text-left">
                 <i.icon className="mb-3 h-5 w-5 text-primary" />
@@ -273,7 +273,7 @@ function Index() {
           </div>
 
           <a
-            href="https://wa.me/919876543210?text=Hi%20ABC%20Saloun!%20I'd%20like%20to%20book%20an%20appointment."
+            href="https://wa.me/919035891110?text=Hi%20ABC%20Saloun!%20I'd%20like%20to%20book%20an%20appointment."
             target="_blank"
             rel="noopener noreferrer"
             className="mt-10 inline-flex items-center gap-2 rounded-full bg-[var(--gradient-gold)] px-8 py-4 text-sm font-medium text-primary-foreground shadow-[var(--shadow-glow)] transition hover:scale-105"
