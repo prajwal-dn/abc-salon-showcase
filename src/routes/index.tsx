@@ -554,9 +554,12 @@ function Index() {
                 <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-white/5 pt-6">
                   <p className="text-xs text-muted-foreground">Prices indicative — final quote given after consultation.</p>
                   <a
-                    href={`https://wa.me/919035891110?text=${encodeURIComponent(`Hi ABC Saloun! I'd like to book ${active.title}.`)}`}
+                    href={waLink(`Hi ABC Saloun! I'd like to book ${active.title}.`)}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={(e) =>
+                      openWhatsApp(e, waLink(`Hi ABC Saloun! I'd like to book ${active.title}.`))
+                    }
                     className="inline-flex items-center gap-2 rounded-full bg-[var(--gradient-gold)] px-6 py-3 text-sm font-medium text-primary-foreground shadow-[var(--shadow-glow)] transition hover:scale-105"
                   >
                     <Phone className="h-4 w-4" /> Book {active.title}
