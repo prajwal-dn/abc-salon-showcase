@@ -322,7 +322,7 @@ function Index() {
             className="mb-16 text-center"
           >
             <p className="mb-3 text-xs uppercase tracking-[0.3em] text-primary">Our facilities</p>
-            <h2 className="text-4xl sm:text-6xl">Eight worlds, <span className="italic text-gradient-gold">one studio</span>.</h2>
+            <h2 className="text-3xl sm:text-6xl">Eight worlds, <span className="italic text-gradient-gold">one studio</span>.</h2>
             <p className="mx-auto mt-5 max-w-xl text-muted-foreground">Tap any facility to step inside and see the space, rituals & pricing.</p>
           </motion.div>
 
