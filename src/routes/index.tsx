@@ -267,7 +267,12 @@ function Index() {
             ))}
           </div>
 
-          <a href="tel:+919876543210" className="mt-10 inline-flex items-center gap-2 rounded-full bg-[var(--gradient-gold)] px-8 py-4 text-sm font-medium text-primary-foreground shadow-[var(--shadow-glow)] transition hover:scale-105">
+          <a
+            href="https://wa.me/919876543210?text=Hi%20ABC%20Saloun!%20I'd%20like%20to%20book%20an%20appointment."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-10 inline-flex items-center gap-2 rounded-full bg-[var(--gradient-gold)] px-8 py-4 text-sm font-medium text-primary-foreground shadow-[var(--shadow-glow)] transition hover:scale-105"
+          >
             <Phone className="h-4 w-4" /> Book your appointment
           </a>
         </motion.div>
