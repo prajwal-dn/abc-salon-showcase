@@ -65,7 +65,12 @@ function Index() {
             <a href="#experience" className="hover:text-foreground transition">Experience</a>
             <a href="#visit" className="hover:text-foreground transition">Visit</a>
           </div>
-          <a href="#visit" className="rounded-full bg-[var(--gradient-gold)] px-5 py-2 text-sm font-medium text-primary-foreground shadow-[var(--shadow-glow)] transition hover:scale-105">
+          <a
+            href="https://wa.me/919876543210?text=Hi%20ABC%20Saloun!%20I'd%20like%20to%20book%20an%20appointment."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full bg-[var(--gradient-gold)] px-5 py-2 text-sm font-medium text-primary-foreground shadow-[var(--shadow-glow)] transition hover:scale-105"
+          >
             Book
           </a>
         </nav>
