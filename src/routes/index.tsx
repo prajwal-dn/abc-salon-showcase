@@ -162,7 +162,24 @@ const facilities: Facility[] = [
   },
 ];
 
-const WA = "https://wa.me/919035891110?text=Hi%20ABC%20Saloun!%20I'd%20like%20to%20book%20an%20appointment.";
+const WA_NUMBER = "919035891110";
+const waLink = (msg: string) =>
+  `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+const WA = waLink("Hi ABC Saloun! I'd like to book an appointment.");
+
+const openWhatsApp = (e: React.MouseEvent<HTMLAnchorElement>, url: string) => {
+  e.preventDefault();
+  // Try opening in a new tab; if the popup is blocked (e.g. inside the
+  // Lovable preview iframe), fall back to navigating the top-level window.
+  const win = window.open(url, "_blank", "noopener,noreferrer");
+  if (!win || win.closed || typeof win.closed === "undefined") {
+    try {
+      window.top!.location.href = url;
+    } catch {
+      window.location.href = url;
+    }
+  }
+};
 
 function Index() {
   const ref = useRef<HTMLDivElement>(null);
